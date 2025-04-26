@@ -3,8 +3,8 @@ CFLAGS = -Wall -Wextra -O2
 LDFLAGS =
 
 # Source files
-SRC_ORIGINAL = material/fib.c
-SRC_FLATTENED = solution/fib.c
+SRC_ORIGINAL = ../../material/fib.c
+SRC_FLATTENED = fib.c
 
 # Default target
 all: fib fib_flattened
