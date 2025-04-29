@@ -4,6 +4,7 @@
 
 #define NUM_REGS 16
 #define NUM_FLAGS 3
+#define DEBUG 0
 
 uint8_t fib_bytecode[] = {
 // fib:
@@ -49,6 +50,30 @@ typedef struct {
     uint64_t r[NUM_REGS];       // registers
     uint8_t  flag[NUM_FLAGS];   // flag register
 } VM;
+
+// Prints the VM state
+void print_vm(VM* vm, const char* label) {
+    printf("\n==== VM State: %s ====\n", label);
+    printf("Instruction Pointer: %u (0x%016X)\n", vm->ip, vm->ip);
+    
+    // Print registers
+    printf("Registers:\n");
+    for (int i = 0; i < NUM_REGS; i++) {
+        printf("  r%2d: %20lu (0x%016lx)\n", i, vm->r[i], vm->r[i]);
+    }
+    
+    // Print flags
+    printf("Flags: [L:%d E:%d G:%d]\n", 
+           vm->flag[0], vm->flag[1], vm->flag[2]);
+    
+    // Print current instruction if within bounds
+    if (vm->ip < sizeof(fib_bytecode)) {
+        printf("Next Operation: 0x%02X\n", fib_bytecode[vm->ip]);
+    } else {
+        printf("IP out of bounds\n");
+    }
+    printf("============================\n\n");
+}
 
 // Execute a single instruction / handles opcode
 int exec_instruction(VM* vm, uint8_t op) {
@@ -222,12 +247,30 @@ int exec_instruction(VM* vm, uint8_t op) {
             exit(EXIT_FAILURE);
     }
 
+    if (DEBUG == 2) {
+        char label[64];
+        sprintf(label, "After execution of instruction at 0x%02X", old_ip);
+        print_vm(vm, label);
+    }    
     return 0;
 }
 
 // Fetch, decode, execute logic
 uint64_t run_vm(VM *vm) {
+
+    // Store old "i" to avoid redudant output
+    uint64_t old_r3 = 0;
+
     while (vm->ip < sizeof(fib_bytecode)) {
+        
+        if (DEBUG) {
+            if (vm->r[3] != old_r3) {
+                // The result is calculated within "s" that is stored in r2
+                printf("Result-step for i=%ld: %ld\n", vm->r[3], vm->r[2]);
+                old_r3 = vm->r[3];
+            }
+        } 
+        
         uint8_t op = fib_bytecode[vm->ip];
         if (exec_instruction(vm, op)) {
             return vm->r[11];
@@ -274,10 +317,18 @@ int main(int argc, char *argv[]) {
     //  - r11 holds the first argument, in this case "n"
     vm.r[10] = 1;
     vm.r[11] = n;
+
+    if (DEBUG) {
+        print_vm(&vm, "At Function-Call");
+    }   
     
     // Calculate fib within the software VM
     uint64_t result = run_vm(&vm);
-    printf("result: %lu\n", result);
+    printf("Result: %lu\n", result);
+
+    if (DEBUG) {
+        print_vm(&vm, "After Function-Call");
+    }   
 
     return EXIT_SUCCESS;
 }
