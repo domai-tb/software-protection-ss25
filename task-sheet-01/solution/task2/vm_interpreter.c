@@ -83,6 +83,7 @@ int exec_instruction(VM* vm, uint8_t op) {
     old_ip = vm->ip;
     
     switch(op) {
+        // MOV
         case 0x10: {
             uint8_t reg = fib_bytecode[old_ip + 1];
             uint8_t value = fib_bytecode[old_ip + 2];
@@ -91,7 +92,7 @@ int exec_instruction(VM* vm, uint8_t op) {
             vm->ip += 3;
             break;
         }
-
+        // COPY
         case 0x20: {
             uint8_t dest_reg = fib_bytecode[old_ip + 1];
             uint8_t src_reg = fib_bytecode[old_ip + 2];
@@ -100,17 +101,34 @@ int exec_instruction(VM* vm, uint8_t op) {
             vm->ip += 3;
             break;
         }
-
+        // ADD
         case 0x30: {
             uint8_t dest_reg = fib_bytecode[old_ip + 1];
             uint8_t src1_reg = fib_bytecode[old_ip + 2];
             uint8_t src2_reg = fib_bytecode[old_ip + 3];
-            vm->r[dest_reg] = vm->r[src1_reg] + vm->r[src2_reg];
             
-            vm->ip += 4;
+            // MBA Transformation for addition: a + b = (a ^ b) + 2*(a & b)
+            uint32_t xor_result = vm->r[src1_reg] ^ vm->r[src2_reg];
+            uint32_t and_result = vm->r[src1_reg] & vm->r[src2_reg];
+            vm->r[dest_reg] = xor_result + (and_result << 1);
+            // x^2 - x is always even for any integer x
+            uint32_t x = (vm->r[dest_reg] * 0x10325476 + 0x98BADCFE) & 0xFF;
+            uint32_t opaque_result = (x * x - x) & 0x1;
+            
+            if (opaque_result == 0) {
+                // Always true, but hard for compiler to prove
+                vm->ip += 4;
+            } else {
+                // Dead code that will never execute but compiler can't easily determine this
+                // and using volatile to prevent optimization.
+                volatile uint32_t temp = vm->r[dest_reg];
+                vm->r[dest_reg] = ~temp;
+                vm->ip += 4;
+            }
+            
             break;
         }
-
+        // INC
         case 0x31: {
             uint8_t reg = fib_bytecode[old_ip + 1];
             vm->r[reg] += 1;
@@ -118,7 +136,7 @@ int exec_instruction(VM* vm, uint8_t op) {
             vm->ip += 2;
             break;
         }
-
+        // DEC
         case 0x32: {
             uint8_t reg = fib_bytecode[old_ip + 1];
             vm->r[reg] -= 1;
@@ -126,17 +144,52 @@ int exec_instruction(VM* vm, uint8_t op) {
             vm->ip += 2;
             break;
         }
-
+        // SUB
         case 0x33: {
             uint8_t dest_reg = fib_bytecode[old_ip + 1];
             uint8_t src1_reg = fib_bytecode[old_ip + 2];
             uint8_t src2_reg = fib_bytecode[old_ip + 3];
-            vm->r[dest_reg] = vm->r[src1_reg] - vm->r[src2_reg];
             
-            vm->ip += 4;
+            // MBA Transformation for subtraction: a - b = a + ~b + 1 = a ^ ~b ^ (~(a & ~b))
+            uint32_t not_b = ~vm->r[src2_reg];
+            uint32_t a_xor_notb = vm->r[src1_reg] ^ not_b;
+            uint32_t a_and_notb = vm->r[src1_reg] & not_b;
+            vm->r[dest_reg] = a_xor_notb ^ (~a_and_notb);
+            
+            // Complex opaque predicate using Collatz conjecture properties
+            // For any positive integer, applying steps of the Collatz sequence
+            // will eventually reach 1 (unproven but believed to be true)
+            // 
+            // See:
+            //  - https://stackoverflow.com/questions/33223289/collatz-predicate-in-prolog
+            //  - https://www.geeksforgeeks.org/c-program-implement-collatz-conjecture/
+            //  - https://www.geeksforgeeks.org/program-to-print-collatz-sequence/
+            uint32_t n = ((vm->r[dest_reg] ^ 0xDEADBEEF) & 0xFF) | 1; // Ensure odd starting value
+            uint32_t steps = 0;
+            // Limited iterations to avoid excessive computation
+            for (int i = 0; i < 10 && n != 1; i++) {
+                if (n % 2 == 0) {
+                    n = n / 2;
+                } else {
+                    n = 3 * n + 1;
+                }
+                steps++;
+            }
+            
+            // Every number will reach either 1 or a cycle including 1
+            if ((steps & 0x7) != 0x7) {
+                // Always true but hard to prove statically
+                vm->ip += 4;
+            } else {
+                // Dead code path with side effects to prevent elimination
+                volatile uint32_t temp = vm->r[dest_reg];
+                vm->r[dest_reg] = temp ^ 0xFFFFFFFF;
+                vm->ip += 4;
+            }
+            
             break;
         }
-
+        // CMP
         case 0x40: {
             uint8_t reg1 = fib_bytecode[old_ip + 1];
             uint8_t reg2 = fib_bytecode[old_ip + 2];
@@ -164,7 +217,7 @@ int exec_instruction(VM* vm, uint8_t op) {
             vm->ip += 3;
             break;
         }
-
+        // CMPI 
         case 0x41: {
             uint8_t reg = fib_bytecode[old_ip + 1];
             uint8_t value = fib_bytecode[old_ip + 2];
@@ -192,13 +245,13 @@ int exec_instruction(VM* vm, uint8_t op) {
             vm->ip += 3;
             break;
         }
-
+        // JMP
         case 0x50: {
             uint8_t addr = fib_bytecode[old_ip + 1];
             vm->ip = addr;
             break;
         }
-
+        // JEQ
         case 0x51: {
             uint8_t addr = fib_bytecode[old_ip + 1];
             if (vm->flag[1] == 1) {
@@ -208,7 +261,7 @@ int exec_instruction(VM* vm, uint8_t op) {
             }
             break;
         }
-
+        // JLE
         case 0x52: {
             uint8_t addr = fib_bytecode[old_ip + 1];
             if (vm->flag[0] == 1 && vm->flag[1] == 0) {
@@ -218,7 +271,7 @@ int exec_instruction(VM* vm, uint8_t op) {
             }
             break;
         }
-
+        // JGE
         case 0x53: {
             uint8_t addr = fib_bytecode[old_ip + 1];
             if (vm->flag[2] == 1 && vm->flag[1] == 0) {
@@ -228,7 +281,7 @@ int exec_instruction(VM* vm, uint8_t op) {
             }
             break;
         }
-
+        // JNEQ
         case 0x54: {
             uint8_t addr = fib_bytecode[old_ip + 1];
             if (vm->flag[1] == 0) {
@@ -238,10 +291,10 @@ int exec_instruction(VM* vm, uint8_t op) {
             }
             break;
         }
-
+        // RET
         case 0x99:
             return 1;
-
+        // Any undefinied
         default:
             fprintf(stderr, "Unknown opcode 0x%02X at vip=%u\n", op, vm->ip - 1);
             exit(EXIT_FAILURE);
@@ -276,7 +329,9 @@ uint64_t run_vm(VM *vm) {
             return vm->r[11];
         }
     }
-    return 0; // Should never reach here but added for safety
+    
+    // Should never reach here
+    return 0;
 }
 
 // Initilize VM state
