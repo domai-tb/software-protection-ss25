@@ -1,0 +1,4 @@
+future==1.0.0
+miasm @ git+https://github.com/cea-sec/miasm@2a15c60712b326b541d42ac48f372f97023547e7
+pyparsing==2.4.7
+z3-solver==4.15.0.0
