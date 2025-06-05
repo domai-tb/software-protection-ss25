@@ -1,0 +1,8 @@
+IADD:00000001:/vm.bin_ghidra_analyse
+IDSET:/vm.bin_ghidra_analyse:7f011b5b94638541194604
+IDEL:/vm.bin
+IMV:/vm.bin_ghidra_analyse:/vm.bin
+FADD:/New Traces
+FADD:/New Traces/gdb
+IADD:00000002:/New Traces/gdb/vm.bin
+IDSET:/New Traces/gdb/vm.bin:7f011ad515252158842217
