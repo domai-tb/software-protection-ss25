@@ -74,15 +74,15 @@ magic_numer_4 = magic_numer_1
 magic_numer_5 = -0x3435
 
 # Decrypt bytecode by applying "key"
+print("--------------------------")
 dec_bytecode = [b ^ 0xCB for b in enc_bytecode]
-
-# Define symbolic state
-VIP = 0
-REGISTERS = [0] * 256
+print("dec_bytecode = [" + ", ".join(hex(x) for x in dec_bytecode) + "]")
+print("--------------------------")
 
 def vm_execute(dec_bytecode, input_num):
-    global REGISTERS
-    global VIP
+    # Define symbolic state
+    VIP = 0
+    REGISTERS = [0] * 256
     
     def read_uint8(offset):
         return dec_bytecode[offset]
@@ -115,7 +115,6 @@ def vm_execute(dec_bytecode, input_num):
         if op == 0x80:
             # Halt
             print(f'{hex(VIP)}: HALT')
-            break
         
         if op_gt_0x80:
             # High opcode range
@@ -242,5 +241,12 @@ def vm_execute(dec_bytecode, input_num):
     return None
 
 # Run the VM with example bytecode and input number
-result = vm_execute(dec_bytecode, input_num=6)
-print("VM returned:", result)
+print("\n--------- call vm.bin with input 2 ------------\n")
+result = vm_execute(dec_bytecode, input_num=2)
+print("\nVM(2) = ", result)
+print("\n--------- call vm.bin with input 9 ------------\n")
+result = vm_execute(dec_bytecode, input_num=9)
+print("\nVM(9) = ", result)
+print("\n--------- call vm.bin with input 12 ------------\n")
+result = vm_execute(dec_bytecode, input_num=12)
+print("\nVM(12) = ", result)
