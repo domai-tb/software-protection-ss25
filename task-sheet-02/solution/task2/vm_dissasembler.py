@@ -1,252 +1,202 @@
-enc_bytecode = [
-    0xed, 0xcf, 0xcb, 0xcb, 0xcb, 0xcb, 0xcb, 0xcb,
-    0xcb, 0x1e, 0xca, 0xcb, 0xcb, 0xfc, 0xd8, 0xcb,
-    0xcb, 0x3d, 0xca, 0xcb, 0xcb, 0xcb, 0xcb, 0xcb,
-    0xbe, 0xdc, 0x3c, 0xcb, 0xcb, 0xcb, 0xcb, 0xcb,
-    0x1e, 0xca, 0xcb, 0xcb, 0x24, 0x75, 0xcb, 0xcb,
-    0x3d, 0xca, 0xcb, 0xcb, 0xcb, 0xcb, 0xbe, 0xdc,
-    0x7c, 0xcb, 0xcb, 0xcb, 0xcb, 0xcb, 0x1e, 0xca,
-    0xcb, 0xcb, 0xcb, 0xcb, 0x3d, 0xca, 0xcb, 0xcb,
-    0xcb, 0xcb, 0x9a, 0xcf, 0xcb, 0xcb, 0x1e, 0xc9,
-    0xcb, 0xcb, 0xce, 0xcb, 0xcb, 0x4b, 0xcb, 0xcb,
-    0xcb, 0xcb, 0xcb, 0xcb, 0xfb, 0xca, 0xcb, 0xcb,
-    0xcb, 0xcb, 0xcb, 0xca, 0xcb, 0xcb, 0xc9, 0xcb,
-    0xcb, 0xc8, 0xcb, 0xcb, 0xc5, 0xc6, 0xcb, 0xcb,
-    0xc8, 0xcb, 0xcb, 0x9a, 0xe2, 0xcb, 0xcb, 0xed,
-    0xdb, 0xcb, 0xcb, 0xcb, 0xcb, 0xcb, 0x1e, 0xca,
-    0xcb, 0xcb, 0xcb, 0xcb, 0x3d, 0xca, 0xcb, 0xcb,
-    0xcb, 0xcb, 0x9a, 0xcf, 0xcb, 0xcb, 0x9a, 0x11,
-    0xca, 0xcb, 0x1e, 0xc9, 0xcb, 0xcb, 0xc1, 0xcb,
-    0xcb, 0x4b, 0xcb, 0xcb, 0xcb, 0xcb, 0xcb, 0xcb,
-    0xfb, 0xca, 0xcb, 0xcb, 0xcb, 0xcb, 0xcb, 0xca,
-    0xcb, 0xcb, 0xc9, 0xcb, 0xcb, 0xc8, 0xcb, 0xcb,
-    0xc5, 0xc6, 0xcb, 0xcb, 0xc8, 0xcb, 0xcb, 0x9a,
-    0xe2, 0xcb, 0xcb, 0xed, 0xdb, 0xcb, 0xcb, 0xcb,
-    0xcb, 0xcb, 0x1e, 0xca, 0xcb, 0xcb, 0xca, 0xcb,
-    0xcb, 0x3d, 0xca, 0xcb, 0xcb, 0xcb, 0xcb, 0x9a,
-    0xcf, 0xcb, 0xcb, 0x9a, 0xb4, 0xca, 0xcb, 0xed,
-    0xdf, 0xcb, 0xcb, 0xcb, 0xcb, 0xcb, 0x1e, 0xca,
-    0xcb, 0xcb, 0xc1, 0xcb, 0xcb, 0x3d, 0xca, 0xcb,
-    0xcb, 0xcb, 0xcb, 0x9a, 0xcf, 0xcb, 0xcb, 0x4b,
-    0xc9, 0xcb, 0xcb, 0xcb, 0xcb, 0xcb, 0xfb, 0xc8,
-    0xcb, 0xcb, 0xc9, 0xcb, 0xcb, 0xed, 0xdf, 0xcb,
-    0xcb, 0xcb, 0xcb, 0xcb, 0xfb, 0xca, 0xcb, 0xcb,
-    0xcb, 0xcb, 0x09, 0xcf, 0xcb, 0xcb, 0xca, 0xcb,
-    0xcb, 0xc8, 0xcb, 0xcb, 0xc5, 0xd9, 0xcb, 0xcb,
-    0xcf, 0xcb, 0xcb, 0x9a, 0xcf, 0xcb, 0xcb, 0x9a,
-    0x39, 0xcb, 0xcb, 0xed, 0xc7, 0xcb, 0xcb, 0xcb,
-    0xcb, 0xbe, 0xdc, 0xfc, 0xcb, 0xcb, 0xca, 0xcb,
-    0xcb, 0xfb, 0xc9, 0xcb, 0xcb, 0xca, 0xcb, 0xcb,
-    0xed, 0xdf, 0xcb, 0xcb, 0xc8, 0xcb, 0xcb, 0xfb,
-    0xcf, 0xcb, 0xcb, 0xc8, 0xcb, 0xcb, 0x3a, 0xcf,
-    0xcb, 0xcb, 0xc9, 0xcb, 0xcb, 0xce, 0xcb, 0xcb,
-    0x4b, 0xcd, 0xcb, 0xcb, 0xcb, 0xcb, 0xcb, 0xfb,
-    0xcc, 0xcb, 0xcb, 0xcd, 0xcb, 0xcb, 0xad, 0xcc,
-    0xcb, 0xcb, 0xce, 0xcb, 0xcb, 0xc3, 0xcb, 0xcb,
-    0x3d, 0xc3, 0xcb, 0xcb, 0xcb, 0xcb, 0xbe, 0xdc,
-    0xfc, 0xcb, 0xcb, 0xcb, 0xcb, 0xbe, 0xdc, 0x3c,
-    0xcb, 0xcb, 0xca, 0xcb, 0xcb, 0xfb, 0xc9, 0xcb,
-    0xcb, 0xca, 0xcb, 0xcb, 0x3d, 0xc9, 0xcb, 0xcb,
-    0xcb, 0xcb, 0xbe, 0xdc, 0x3c, 0xcb, 0xcb, 0xcb,
-    0xcb, 0xbe, 0xdc, 0x7c, 0xcb, 0xcb, 0xca, 0xcb,
-    0xcb, 0xfb, 0xc9, 0xcb, 0xcb, 0xca, 0xcb, 0xcb,
-    0x3d, 0xc9, 0xcb, 0xcb, 0xcb, 0xcb, 0xed, 0xdf,
-    0xcb, 0xcb, 0xcb, 0xcb, 0xbe, 0xdd, 0xfc, 0xcb,
-    0xcb, 0xca, 0xcb, 0xcb, 0xfb, 0xc9, 0xcb, 0xcb,
-    0xca, 0xcb, 0xcb, 0x1e, 0xc8, 0xcb, 0xcb, 0xca,
-    0xcb, 0xcb, 0xad, 0xc8, 0xcb, 0xcb, 0xc9, 0xcb,
-    0xcb, 0xcf, 0xcb, 0xcb, 0x3d, 0xcf, 0xcb, 0xcb,
-    0xcb, 0xcb, 0xcb, 0x9a, 0x1c, 0x35, 0x34, 0x34,
-    0x9a, 0x19, 0x35, 0x34, 0x34, 0xed, 0xdb, 0xcb,
-    0xcb, 0xcb, 0xcb, 0xbe, 0xdc, 0x7c, 0xcb, 0xcb,
-    0xca, 0xcb, 0xcb, 0xfb, 0xc9, 0xcb, 0xcb, 0xca,
-    0xcb, 0xcb, 0x3d, 0xc9, 0xcb, 0xcb, 0xcb, 0xcb,
-    0x9a, 0xcf, 0xcb, 0xcb, 0xed, 0xdb, 0xcb, 0xcb,
-    0xcb, 0xcb, 0xcb, 0xfb, 0xca, 0xcb, 0xcb, 0xcb,
-    0xcb
-]
+#!/usr/bin/env python3
 
-# Predefined magic numbers
-magic_numer_1 = -0x35
-magic_numer_2 = 0x16    
-magic_numer_3 = -0x36   
-magic_numer_4 = magic_numer_1  
-magic_numer_5 = -0x3435
+import sys
+from miasm.analysis.binary import Container
+from miasm.analysis.machine import Machine
+from miasm.core.locationdb import LocationDB
+from miasm.expression.expression import *
+from miasm.expression.simplifications import expr_simp
+from miasm.ir.symbexec import SymbolicExecutionEngine
 
-# Decrypt bytecode by applying "key"
-print("--------------------------")
-dec_bytecode = [b ^ 0xCB for b in enc_bytecode]
-print("dec_bytecode = [" + ", ".join(hex(x) for x in dec_bytecode) + "]")
-print("--------------------------")
 
-def vm_execute(dec_bytecode, input_num):
-    # Define symbolic state
-    VIP = 0
-    REGISTERS = [0] * 256
-    
-    def read_uint8(offset):
-        return dec_bytecode[offset]
-    
-    def read_uint32(offset):
-        # read 4 bytes little endian from list of ints
-        b = dec_bytecode[offset:offset+4]
-        return b[0] | (b[1] << 8) | (b[2] << 16) | (b[3] << 24)
-    
-    def read_int64(offset):
-        # read 8 bytes little endian signed
-        b = dec_bytecode[offset:offset+8]
-        val = 0
-        for i in range(8):
-            val |= b[i] << (8 * i)
-        # convert to signed 64-bit
-        if val & (1 << 63):
-            val -= 1 << 64
-        return val
-    
-    while True:
-        try:
-            op = read_uint8(VIP)
-        except IndexError:
-            # bytecode is finished
-            break
+# hardcoded list of VM handlers taken from the binary
+VM_HANDLERS = set([
+    0x1390, # MOV
+    0x1380, # JMP
+    0x131c, # ADD
+    0x1368, # JNZ
+    0x12e6, # CMP
+    0x126b, # ADDI
+    0x13d8, # RET
+    0x13f0, # CMPLE
+    0x1350, # MOVI
+    0x13b0, # XOR
+    0x12c2, # LEA
+    0x1297, # MOVC
+])
 
-        op_gt_0x80 = op > 0x80
-        
-        if op == 0x80:
-            # Halt
-            print(f'{hex(VIP)}: HALT')
-        
-        if op_gt_0x80:
-            # High opcode range
-            if op == 0xdd:
-                reg_index = read_uint8(VIP + 1)
-                print(f'{hex(VIP)}: RET r{reg_index}')
-                return REGISTERS[reg_index]
-            
-            if op > 0xdd:
-                if op == 0xf1:
-                    # XOR: REGISTERS[dest] = REGISTERS[Y] ^ REGISTERS[Z]
-                    reg_z = read_uint8(VIP + 1)
-                    reg_y = read_uint8(VIP + 5)
-                    dest = read_uint8(VIP + 9)
-                    REGISTERS[dest] = REGISTERS[reg_y] ^ REGISTERS[reg_z]
-                    print(f'{hex(VIP)}: XOR r{dest} r{reg_y} r{reg_z}')
-                    VIP += 13
-                    continue
-                
-                if op == 0xf6:
-                    # Load pointer from src into dest register (simulate by value copy)
-                    src_reg = read_uint8(VIP + 1)
-                    dest_reg = read_uint8(VIP + 5)
-                    REGISTERS[dest_reg] = REGISTERS[src_reg]
-                    print(f'{hex(VIP)}: LOAD [r{dest_reg}] [r{src_reg}]')
-                    VIP += 9
-                    continue
-                
-                # Unknown opcode in this range - redispatch
-                print(f'{hex(VIP)}: UNKNOWN OPERATION')
-                VIP += 1
-                continue
-            
-            if op == 0xc2:
-                # CMPLE: reg[X] = reg[Y] <= reg[Z]
-                reg_x = read_uint8(VIP + 1)
-                reg_y = read_uint8(VIP + 5)
-                reg_z = read_uint8(VIP + 9)
-                REGISTERS[reg_x] = 1 if REGISTERS[reg_y] <= REGISTERS[reg_z] else 0
-                print(f'{hex(VIP)}: CMPLE r{reg_x} r{reg_y} r{reg_z} // r{reg_x} = {REGISTERS[reg_x]}')
-                VIP += 13
-                continue
-            
-            if op == 0xd5:
-                # Load immediate into dest register
-                dest_reg = read_uint8(VIP + 1)
-                immediate = read_uint32(VIP + 5)
-                REGISTERS[dest_reg] = immediate
-                print(f'{hex(VIP)}: MOV r{dest_reg} {immediate}')
-                VIP += 9
-                continue
-            
-            # Redispatch (unknown opcode)
-            print(f'{hex(VIP)}: UNKNOWN OPERATION')
-            VIP += 1
-            continue
-        
-        else:
-            # Low opcode range
-            if op == 0x30:
-                # mov dest_idx src_idx
-                dest_idx = read_uint8(VIP + 1)
-                src_idx = read_uint8(VIP + 5)
-                REGISTERS[dest_idx] = REGISTERS[src_idx]
-                print(f'{hex(VIP)}: MOV r{dest_idx} r{src_idx}')
-                VIP += 9
-                continue
-            
-            if op <= 0x30:
-                if op == 0x26:
-                    # Compute memory address with local stack (simulate by adding offset)
-                    local_stack_addr = 0x100000  # Just an arbitrary address base
-                    dest_reg = read_uint8(VIP + 5)
-                    offset = read_uint32(VIP + 1)
-                    REGISTERS[dest_reg] = local_stack_addr + offset
-                    print(f'{hex(VIP)}: CADDR r{dest_reg} // r{dest_reg} = {REGISTERS[dest_reg]}')
-                    VIP += 9
-                    continue
-                
-                if op == 0x0e:
-                    # If register at source is zero, branch
-                    src_reg = read_uint8(VIP + 5)
-                    if REGISTERS[src_reg] == 0:
-                        VIP += 9
-                        op = read_uint8(VIP)
-                        if op == 0x80:
-                            break
-                        continue
-                    else:
-                        VIP += 1
-                        continue
-                
-                if op == 0x00:
-                    # less-than comparison flag
-                    reg_x = read_uint8(VIP + 1)
-                    reg_y = read_uint8(VIP + 5)
-                    reg_z = read_uint8(VIP + 9)
-                    REGISTERS[reg_z] = 1 if REGISTERS[reg_x] < REGISTERS[reg_y] else 0
-                    print(f'{hex(VIP)}: CMPLE r{reg_z} r{reg_x} r{reg_z} // r{reg_z} = {REGISTERS[reg_z]}')
-                    VIP += 13
-                    continue
-                
-                # Redispatch unknown opcode <= 0x30
-                VIP += 1
-                continue
-            
-            if op == 0x66:
-                # ADD: reg[dest] = reg[X] + reg[Y]
-                reg_y = read_uint32(VIP + 1)
-                reg_x = read_uint32(VIP + 5)
-                dest = read_uint32(VIP + 9)
-                REGISTERS[dest] = REGISTERS[reg_y] + REGISTERS[reg_x]
-                print(f'{hex(VIP)}: ADD r{dest} r{reg_y} r{reg_x}')
-                VIP += 13
-                continue
-            
-            # JMP: unconditional jump
-            jump_offset = read_uint32(VIP + 1)
-            print(f'{hex(VIP)}: JMP {hex(jump_offset)}')
-            VIP = VIP + jump_offset + 1
-            continue
-    
-    # End of VM execution
-    return None
+def constraint_memory(address, num_of_bytes):
+    """
+    Reads `num_of_bytes` from the binary at a given address
+    and builds symbolic formulas to pre-configure the symbolic
+    execution engine for concolinc execution.
+    """
+    global container
+    # read bytes from binary
+    byte_stream = container.bin_stream.getbytes(address, num_of_bytes)
+    # build symbolic memory address
+    sym_address = ExprMem(ExprInt(address, 64), num_of_bytes * 8)
+    # build symbolic memory value
+    sym_value = ExprInt(int.from_bytes(
+        byte_stream, byteorder='little'), num_of_bytes * 8)
 
-# Run the VM with example bytecode and input number
-print("\n--------- call vm.bin with input 2 ------------\n")
-result = vm_execute(dec_bytecode, input_num=2)
-print("\nVM(2) = ", result)
-print("\n--------- call vm.bin with input 9 ------------\n")
-result = vm_execute(dec_bytecode, input_num=9)
-print("\nVM(9) = ", result)
-print("\n--------- call vm.bin with input 12 ------------\n")
-result = vm_execute(dec_bytecode, input_num=12)
-print("\nVM(12) = ", result)
+    return sym_address, sym_value
+
+def disassemble(sb, address):
+    """
+    Callback to dump individual VM handler information,
+    execution context etc.
+    """
+    # fetch concrete value of current virtual instruction pointer
+    vip = sb.symbols[ExprId("RDX", 64)]
+    opcode = sb.symbols[ExprId("RAX",64)]
+    rsp = sb.symbols[ExprId("RSP",64)]
+    # catch the individual handlers and print execution context
+    if int(address) == 0x1390:
+        param_address = expr_simp((vip + ExprInt(1, 64)).signExtend(64))
+        param1 = expr_simp(sb.symbols[ExprMem(param_address, 32)])
+        param_address = expr_simp((vip + ExprInt(5, 64)).signExtend(64))
+        param2 = expr_simp(sb.symbols[ExprMem(param_address, 32)])
+        print(f"{opcode} - MOV:  reg[{param1}] = reg[{param2}]")
+    if int(address) == 0x1380:
+        param_address = expr_simp((vip + ExprInt(1, 64)).signExtend(64))
+        param1 = expr_simp(sb.symbols[ExprMem(param_address, 32)])
+        print(f"{opcode} - JMP: jump to vip + 1 + {param1}")
+    if int(address) == 0x131c:
+        param_address = expr_simp((vip + ExprInt(1, 64)).signExtend(64))
+        param1 = expr_simp(sb.symbols[ExprMem(param_address, 32)])
+        param_address = expr_simp((vip + ExprInt(5, 64)).signExtend(64))
+        param2 = expr_simp(sb.symbols[ExprMem(param_address, 32)])
+        param_address = expr_simp((vip + ExprInt(9, 64)).signExtend(64))
+        param3 = expr_simp(sb.symbols[ExprMem(param_address, 32)])
+        print(f"{opcode} - ADD: reg[{param3}] = reg[{param1}] + reg[{param2}]")
+    if int(address) == 0x1368:
+        param_address = expr_simp((vip + ExprInt(1, 64)).signExtend(64))
+        param1 = expr_simp(sb.symbols[ExprMem(param_address, 32)])
+        param_address = expr_simp((vip + ExprInt(5, 64)).signExtend(64))
+        param2 = expr_simp(sb.symbols[ExprMem(param_address, 32)])
+        print(f"{opcode} - JNZ: if {param2} != 0: jump to vip + 1 + {param1} ")
+    if int(address) == 0x12e6:
+        param_address = expr_simp((vip + ExprInt(1, 64)).signExtend(64))
+        param1 = expr_simp(sb.symbols[ExprMem(param_address, 32)])
+        param_address = expr_simp((vip + ExprInt(5, 64)).signExtend(64))
+        param2 = expr_simp(sb.symbols[ExprMem(param_address, 32)])
+        param_address = expr_simp((vip + ExprInt(9, 64)).signExtend(64))
+        param3 = expr_simp(sb.symbols[ExprMem(param_address, 32)])
+        print(f"{opcode} - CMP: reg[{param3}] = reg[{param1}] < reg[{param2}]")
+    if int(address) == 0x126b:
+        param_address = expr_simp((vip + ExprInt(1, 64)).signExtend(64))
+        param1 = expr_simp(sb.symbols[ExprMem(param_address, 16)])
+        param_address = expr_simp((vip + ExprInt(5, 64)).signExtend(64))
+        param2 = expr_simp(sb.symbols[ExprMem(param_address, 16)])
+        print(f"{opcode} - ADDI: reg[{param2}] = local_var + {param1}")
+    if int(address) == 0x13d8:
+        param_address = expr_simp((vip + ExprInt(1, 64)).signExtend(64))
+        param1 = expr_simp(sb.symbols[ExprMem(param_address, 32)])
+        print(f"{opcode} - RET: return reg[{param1}]")
+    if int(address) == 0x13f0:
+        param_address = expr_simp((vip + ExprInt(1, 64)).signExtend(64))
+        param1 = expr_simp(sb.symbols[ExprMem(param_address, 32)])
+        param_address = expr_simp((vip + ExprInt(5, 64)).signExtend(64))
+        param2 = expr_simp(sb.symbols[ExprMem(param_address, 32)])
+        param_address = expr_simp((vip + ExprInt(9, 64)).signExtend(64))
+        param3 = expr_simp(sb.symbols[ExprMem(param_address, 32)])
+        print(f"{opcode} - CMPLE: reg[{param1}] = reg[{param2}] <= reg[{param3}]")
+    if int(address) == 0x1350:
+        param_address = expr_simp((vip + ExprInt(1, 64)).signExtend(64))
+        param1 = expr_simp(sb.symbols[ExprMem(param_address, 32)])
+        param_address = expr_simp((vip + ExprInt(5, 64)).signExtend(64))
+        param2 = expr_simp(sb.symbols[ExprMem(param_address, 32)])
+        print(f"{opcode} - MOVI:  reg[{param1}] = {param2}")
+    if int(address) == 0x13b0:
+        param_address = expr_simp((vip + ExprInt(1, 64)).signExtend(64))
+        param1 = expr_simp(sb.symbols[ExprMem(param_address, 32)])
+        param_address = expr_simp((vip + ExprInt(5, 64)).signExtend(64))
+        param2 = expr_simp(sb.symbols[ExprMem(param_address, 32)])
+        param_address = expr_simp((vip + ExprInt(9, 64)).signExtend(64))
+        param3 = expr_simp(sb.symbols[ExprMem(param_address, 32)])
+        print(f"{opcode} - XOR: reg[{param3}] = reg[{param2}] ^ reg[{param1}]")
+    if int(address) == 0x12c2:
+        param_address = expr_simp((vip + ExprInt(1, 64)).signExtend(64))
+        param1 = expr_simp(sb.symbols[ExprMem(param_address, 32)])
+        param_address = expr_simp((vip + ExprInt(5, 64)).signExtend(64))
+        param2 = expr_simp(sb.symbols[ExprMem(param_address, 32)])
+        print(f"{opcode} - MOV:  reg[{param2}] = {param1}")
+    if int(address) == 0x1297:
+        param_address = expr_simp((vip + ExprInt(1, 64)).signExtend(64))
+        param1 = expr_simp(sb.symbols[ExprMem(param_address, 32)])
+        print(f"{opcode} - MOVC:  reg[{param1}] = local_var")
+
+
+# check arguments
+if len(sys.argv) != 3:
+    print(f"[*] Syntax: {sys.argv[0]} <file> <input number>")
+    exit()
+
+# parse file path
+file_path = sys.argv[1]
+
+# address of vm entry
+start_addr = 0x11a0
+
+# init symbol table
+loc_db = LocationDB()
+# read binary file
+container = Container.from_stream(open(file_path, 'rb'), loc_db)
+# get CPU abstraction
+machine = Machine(container.arch)
+# disassembly engine
+mdis = machine.dis_engine(container.bin_stream, loc_db=loc_db)
+
+# initialize lifter to intermediate representation
+lifter = machine.lifter_model_call(mdis.loc_db)
+
+# disassemble the function at address
+asm_cfg = mdis.dis_multiblock(start_addr)
+
+# translate asm_cfg into ira_cfg
+ira_cfg = lifter.new_ircfg_from_asmcfg(asm_cfg)
+
+# init SE engine
+sb = SymbolicExecutionEngine(lifter)
+
+# constraint bytecode -- start address and size (highest address - lowest address)
+length =  0x4327 - 0x4060
+sym_address, sym_value = constraint_memory(0x4060, length)
+sb.symbols[sym_address] = sym_value
+# constraint VM input (rdi, first function argument). The value in `ExprInt` rerpesents the function's input value.
+rdi = ExprId("RDI", 64)
+sb.symbols[rdi] = ExprInt(int(sys.argv[2]), 64)
+
+# init worklist
+basic_block_worklist = [ExprInt(start_addr, 64)]
+
+# worklist algorithm
+while basic_block_worklist:
+    # get current block
+    current_block = basic_block_worklist.pop()
+
+    # print(f"current block: {current_block}")
+
+    # if current block is a VM handler, dump handler-specific knowledge
+    if current_block.is_int() and int(current_block) in VM_HANDLERS:
+        disassemble(sb, current_block)
+    #else:
+    #    print(f"other handler: {current_block}")
+
+    # symbolical execute block -> next_block: symbolic value/address to execute
+    next_block = sb.run_block_at(ira_cfg, current_block, step=False)
+
+    # print(f"next block: {next_block}")
+
+    # is next block is integer or label, continue execution
+    if next_block.is_int() or next_block.is_loc():
+        basic_block_worklist.append(next_block)
+
+# dump symbolic state
+#sb.dump()
+
+# dump VMs/functions' return value -- only works if SE runs until the end
+rax = ExprId("RAX", 64)
+value = sb.symbols[rax]
+print(f"VM return value: {value}")
