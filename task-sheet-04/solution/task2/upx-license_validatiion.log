@@ -1,0 +1,13 @@
+                       Ultimate Packer for eXecutables
+                          Copyright (C) 1996 - 2025
+UPX 5.0.2       Markus Oberhumer, Laszlo Molnar & John Reiser   Jul 20th 2025
+
+        File size         Ratio      Format      Name
+   --------------------   ------   -----------   -----------
+[WARNING] bad b_info at 0x4bed4
+
+[WARNING] ... recovery at 0x4bed0
+
+    778992 <-    311120   39.94%   linux/amd64   license_validation
+
+Unpacked 1 file.

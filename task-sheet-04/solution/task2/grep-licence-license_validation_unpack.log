@@ -1,0 +1,34 @@
+License accepted.
+Invalid license. Please buy our software and save our children from starvation.
+*** invalid %N$ use detected ***
+Invalid cross-device link
+Invalid argument
+Invalid exchange
+Invalid request descriptor
+Invalid request code
+Invalid slot
+Invalid or incomplete multibyte or wide character
+Fatal error: glibc detected an invalid stdio handle
+free(): invalid pointer
+free(): invalid size
+invalid fastbin entry (free)
+realloc(): invalid old size
+realloc(): invalid next size
+realloc(): invalid pointer
+munmap_chunk(): invalid pointer
+malloc_consolidate(): invalid chunk size
+free(): invalid next size (fast)
+free(): invalid next size (normal)
+malloc(): invalid size (unsorted)
+malloc(): invalid next size (unsorted)
+malloc(): invalid next->prev_inuse (unsorted)
+mremap_chunk(): invalid pointer
+Fatal error: invalid format in exception string
+invalid ELF header
+ELF file ABI version invalid
+ELF file OS ABI invalid
+! "invalid format specifier"
+invalid mode for dlopen()
+invalid target namespace in dlmopen()
+invalid namespace
+invalid mode parameter
